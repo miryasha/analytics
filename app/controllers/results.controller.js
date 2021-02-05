@@ -23,7 +23,9 @@ router
   .post("/add", (req, res, next) => {
     const {ticker} = req.body ;
     const splitTicker = ticker.split("_").length;
-    const market = splitTicker === 1 ? callStock(ticker) : callForex(ticker);
+console.log(splitTicker)
+
+    //const market = splitTicker === 1 ? callStock(ticker) : callForex(ticker);
     next()
       
      

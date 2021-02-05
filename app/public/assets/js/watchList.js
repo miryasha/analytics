@@ -223,10 +223,9 @@ $(document).ready(function () {
 
                   if (event.target.classList.contains('Add')) {
 
-                        const tickerRow = { ticker: event.target.parentElement.parentElement.querySelector("#listTicker").innerText };
-                        //console.log(idRow)
-
-                        $.post("/results/add", tickerRow)
+                        const rowData = { ticker: event.target.parentElement.parentElement.querySelector("#listTicker").innerText};                                    
+                         
+                        $.post("/results/add", rowData)
                         displayMessage("success", "Watchlist has sent to Results");
                         setTimeout(function () { location.reload(); }, 2000);
                   }
