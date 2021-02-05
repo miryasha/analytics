@@ -1,27 +1,23 @@
 {
-  "name": "analytics",
+  "name": "alphavantage",
   "version": "1.0.0",
-  "description": "",
+  "description": "api reader",
   "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+  "directories": {
+    "test": "test"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yasha6081/analytics.git"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/yasha6081/analytics/issues"
-  },
-  "homepage": "https://github.com/yasha6081/analytics#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "https": "^1.0.0",
     "mysql": "^2.18.1",
+    "node-cron": "^2.0.3",
     "node-fetch": "^2.6.1",
-    "sanitize-html": "^2.3.2"
+    "sanitize-html": "^2.3.1"
   }
 }
