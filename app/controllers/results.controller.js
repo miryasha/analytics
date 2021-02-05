@@ -14,15 +14,14 @@ const callStock = (id,ticker) =>{
          .then(data => {
                data.forEach(elements => {
                  const { ticker, market, strategy, marketTrend, timeFrame, startingDate, endingDate, tradeDuration, startingDateInfo, endingDateInfo } = elements;
-                 const symbols = ticker;
-                 const url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + symbols + "&outputsize=full&apikey=" + API_KEY;
+                 //const symbols = ticker;
+                 const url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + ticker + "&outputsize=full&apikey=" + API_KEY;
                  const response = fetch(url)
                  .then(res => res.json())
                  .then(data => {  
                           
                         const Symbol =  data["Meta Data"]["2. Symbol"];
                         const ohlcData =  data["Time Series (Daily)"];
-                        const endingDay = endingDate;
                         const dataToArray =  Object.entries(ohlcData);  //loop throgh all keys & values
                         let index = ''; 
                         let loopCounter = parseInt(tradeDuration) + 1;  
@@ -31,7 +30,7 @@ const callStock = (id,ticker) =>{
                            for (let counter = 0; counter < dataToArray.length; counter++) {
                                 const date =  dataToArray[counter][0];//==brings back the dates
                                                 
-                              if(dataToArray[counter][0] === endingDay){ index = counter} ; //== End of if statement 
+                              if(dataToArray[counter][0] === endingDate){ index = counter} ; //== End of if statement 
                                   
                             }; //== End of for loop to find the index of ending day
                          
