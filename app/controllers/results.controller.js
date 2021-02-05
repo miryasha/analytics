@@ -25,27 +25,27 @@ const callStock = (id,ticker) =>{
                         const endingDay = endingDate;
                         const dataToArray =  Object.entries(ohlcData);  //loop throgh all keys & values
                         let index = ''; 
-                        let loopCounter = parseInt(tradeDuration);                                
+                        let loopCounter = parseInt(tradeDuration) + 1;  
+                        let loopStatement =    index + loopCounter;                       
                        //loop inseide the data to index to ending day
                            for (let counter = 0; counter < dataToArray.length; counter++) {
                                 const date =  dataToArray[counter][0];//==brings back the dates
                                                 
-                              if(dataToArray[counter][0] === endingDay){ index = counter };//== End of if statement 
+                              if(dataToArray[counter][0] === endingDay){ index = counter} ; //== End of if statement 
                                   
                             }; //== End of for loop to find the index of ending day
+                         
+                          let count = index
+                          for ( count ; count <= loopStatement  ; count++) {
 
-                         console.log(index, loopCounter)
-                           let count = index;
-                         for ( count ; count < loopCounter ; count++) {
-
-                          const date =  dataToArray[count][0];
-                          const Open =  dataToArray[count][1]["1. open"];
-                          const High =  dataToArray[count][1]["2. high"];
-                          const Low =  dataToArray[count][1]["3. low"];
-                          const Close =  dataToArray[count][1]["4. close"];
-                          const Volume =  dataToArray[count][1]["5. volume"];
-                          const OHLCV =  (Symbol, date, Open, High, Low, Close, Volume);
-                          console.log(OHLCV)       
+                           const date =  dataToArray[count][0];
+                           const Open =  dataToArray[count][1]["1. open"];
+                           const High =  dataToArray[count][1]["2. high"];
+                           const Low =  dataToArray[count][1]["3. low"];
+                           const Close =  dataToArray[count][1]["4. close"];
+                           const Volume =  dataToArray[count][1]["5. volume"];
+                           //const OHLCV =  (Symbol, date, Open, High, Low, Close, Volume);
+                           console.log(Symbol, date, Open, High, Low, Close, Volume)       
                           
                         }; //== End of for loop to find the data between two dates
 
