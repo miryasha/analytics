@@ -53,7 +53,7 @@ const callStock = (ticker) => {
 
 
 //=====call the forex for the first_time
-const callForex = (ticker) => {
+  const callForex = (ticker) => {
   const splitTicker = ticker.split("_");
   const tickerOne = splitTicker[0];
   const tickerTwo = splitTicker[1];

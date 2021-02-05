@@ -223,10 +223,10 @@ $(document).ready(function () {
 
                   if (event.target.classList.contains('Add')) {
 
-                        const idRow = { id: event.target.parentElement.parentElement.querySelector("#listId").innerText };
+                        const tickerRow = { ticker: event.target.parentElement.parentElement.querySelector("#listTicker").innerText };
                         //console.log(idRow)
 
-                        $.post("/results/add", idRow)
+                        $.post("/results/add", tickerRow)
                         displayMessage("success", "Watchlist has sent to Results");
                         setTimeout(function () { location.reload(); }, 2000);
                   }
