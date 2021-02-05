@@ -26,7 +26,7 @@ const callStock = (ticker) => {
 
             for (let count = 0; count < dataToArray.length; count++) {
 
-              const date = await dataToArray[count][0];//brings back the dates
+              const date = await dataToArray[count][0];
               const Open = await dataToArray[count][1]["1. open"];
               const High = await dataToArray[count][1]["2. high"];
               const Low = await dataToArray[count][1]["3. low"];

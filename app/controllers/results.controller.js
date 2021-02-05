@@ -20,50 +20,45 @@ const callStock = (id,ticker) =>{
                  .then(res => res.json())
                  .then(data => {  
                           
-                       const Symbol =  data["Meta Data"]["2. Symbol"];
-                       const ohlcData =  data["Time Series (Daily)"];
-                       const endingDay = endingDate;
-                       const dataToArray =  Object.entries(ohlcData);  //loop throgh all keys & values
-                        
+                        const Symbol =  data["Meta Data"]["2. Symbol"];
+                        const ohlcData =  data["Time Series (Daily)"];
+                        const endingDay = endingDate;
+                        const dataToArray =  Object.entries(ohlcData);  //loop throgh all keys & values
+                        let index = ''; 
+                        let loopCounter = parseInt(tradeDuration);                                
+                       //loop inseide the data to index to ending day
+                           for (let counter = 0; counter < dataToArray.length; counter++) {
+                                const date =  dataToArray[counter][0];//==brings back the dates
+                                                
+                              if(dataToArray[counter][0] === endingDay){ index = counter };//== End of if statement 
+                                  
+                            }; //== End of for loop to find the index of ending day
 
-                       //===loop inseide the data to index to ending day
-                       for (let count = 0; count < dataToArray.length; count++) {
+                         console.log(index, loopCounter)
+                           let count = index;
+                         for ( count ; count < loopCounter ; count++) {
 
-                        const date =  dataToArray[count][0];//brings back the dates
-                        const indexEndDay = (endingDay)=>{
+                          const date =  dataToArray[count][0];
+                          const Open =  dataToArray[count][1]["1. open"];
+                          const High =  dataToArray[count][1]["2. high"];
+                          const Low =  dataToArray[count][1]["3. low"];
+                          const Close =  dataToArray[count][1]["4. close"];
+                          const Volume =  dataToArray[count][1]["5. volume"];
+                          const OHLCV =  (Symbol, date, Open, High, Low, Close, Volume);
+                          console.log(OHLCV)       
+                          
+                        }; //== End of for loop to find the data between two dates
 
-                           if(dataToArray[count][0] === endingDay){ console.log(count)};
 
-                          };//==End of indexEndDay function
 
-                          indexEndDay(endingDay)
 
-                         }; //== End of for loop to find the index of ending day
 
-                         
-
-                        // const Open =  dataToArray[count][1]["1. open"];
-                        // const High =  dataToArray[count][1]["2. high"];
-                        // const Low =  dataToArray[count][1]["3. low"];
-                        // const Close =  dataToArray[count][1]["4. close"];
-                        // const Volume =  dataToArray[count][1]["5. volume"];
-                        //const ohlc = [date, Open, High]
-                        // console.log(ohlc)
-                      
-
-                       
                  })//==end third then afrer res.json()
      
                });//==end first forEach
                   
          })//==end first then
         
-
-  
-  
-
-
-
 
 
 };//=end callStock func
@@ -95,8 +90,4 @@ router
 
 
 
-module.exports = router
-
-// db.WatchList.createPermenentWatchList(Symbol)
-//  .then(db.WatchList.insertToPermenentWatchList(Symbol,{ Symbol, date , Open, High, Low, Close, Volume, maxHigh, minLow, market, strategy, marketTrend, timeFrame, tradeDuration, startingDateInfo, endingDateInfo }))
-//  
+module.exports = router 
