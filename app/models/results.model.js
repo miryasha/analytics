@@ -5,6 +5,8 @@ class Results extends Base {
       return this.query("SELECT * FROM  results")
     }
 
+    
+
   //   findAllBetween(tickerName, startingDate, endingDate) {
   //     return this.query("SELECT * FROM  qoutes_daily  WHERE  Symbol = "+ tickerName +" AND date  BETWEEN  "+ startingDate +" AND  "+ endingDate +"; ");
   // }

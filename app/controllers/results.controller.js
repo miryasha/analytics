@@ -7,7 +7,19 @@ const fetch = require('node-fetch');
 
 
 
-callStock(ticker)
+const callStock = (id,ticker) =>{
+    db.WatchList.findRow(id)
+    .then(data => {
+          data.forEach(elements => {
+            const { ticker, market, strategy, marketTrend, timeFrame, startingDate, endingDate, tradeDuration, startingDateInfo, endingDateInfo } = elements;
+            
+
+          });//==end forEach
+
+    })//==end first then
+
+
+};//=end callStock func
 
 
 
@@ -26,10 +38,10 @@ callStock(ticker)
 
 router
   .post("/add", (req, res, next) => {
-    const {ticker} = req.body ;
+    const {id,ticker} = req.body ;
     const splitTicker = ticker.split("_").length;
-    console.log(splitTicker)
-    //const market = splitTicker === 1 ? callStock(ticker) : callForex(ticker);
+    console.log(id,ticker,splitTicker)
+    const market = splitTicker === 1 ? callStock(id,ticker) : callForex(id,ticker);
     next()
       
      
