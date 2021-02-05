@@ -17,8 +17,37 @@ const callStock = (id,ticker) =>{
                  const url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + symbols + "&outputsize=full&apikey=" + API_KEY;
                  const response = fetch(url)
                  .then(res => res.json())
-                 .then(data => { 
-                   
+                 .then(data => {  
+                          
+                       const Symbol =  data["Meta Data"]["2. Symbol"];
+                       const ohlcData =  data["Time Series (Daily)"];
+                      
+                       const dataToArray =  Object.entries(ohlcData);  //loop throgh all keys & values
+                       const endingDate =  dataToArray//onsore shomare sefr ramigirad
+                        console.log(endingDate)
+
+                      //  const endingDate = () =>{if(dataToArray[2][0] === '2021-02-04'){
+                      //   console.log(dataToArray[2][0])
+                      //          }
+                      //     } 
+                      //       endingDate()
+
+
+
+
+                       for (let count = 0; count < 2; count++) {
+
+                        const date =  dataToArray[count][0];//brings back the dates
+                        const Open =  dataToArray[count][1]["1. open"];
+                        const High =  dataToArray[count][1]["2. high"];
+                        const Low =  dataToArray[count][1]["3. low"];
+                        const Close =  dataToArray[count][1]["4. close"];
+                        const Volume =  dataToArray[count][1]["5. volume"];
+                        const ohlc = [date, Open, High]
+                        // console.log(ohlc)
+                      };//==end of for loop
+
+                       
                  })//==end third then afrer res.json()
      
                });//==end first forEach
