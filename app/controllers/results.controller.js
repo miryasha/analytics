@@ -4,6 +4,7 @@ const cron = require('node-cron');
 require('dotenv').config({ path: '../../.env' });
 const API_KEY = process.env.Alpha_API_KEY;
 const fetch = require('node-fetch');
+const connection = require("../cofig/dbConnection");
 
 
 
@@ -21,31 +22,28 @@ const callStock = (id,ticker) =>{
                           
                        const Symbol =  data["Meta Data"]["2. Symbol"];
                        const ohlcData =  data["Time Series (Daily)"];
-                      
+                       
                        const dataToArray =  Object.entries(ohlcData);  //loop throgh all keys & values
-                       const endingDate =  dataToArray//onsore shomare sefr ramigirad
-                        console.log(endingDate)
-
-                      //  const endingDate = () =>{if(dataToArray[2][0] === '2021-02-04'){
-                      //   console.log(dataToArray[2][0])
-                      //          }
-                      //     } 
-                      //       endingDate()
-
-
-
-
-                       for (let count = 0; count < 2; count++) {
+                        
+                       for (let count = 0; count < dataToArray.length; count++) {
 
                         const date =  dataToArray[count][0];//brings back the dates
+                        const findMe = ()=>{
+                           if(dataToArray[count][0] === "2021-02-04"){ console.log(count)}
+                          }
+                        findMe()
+                         }; //== End of for loop to find the index of ending day
+
+                         
+
                         const Open =  dataToArray[count][1]["1. open"];
                         const High =  dataToArray[count][1]["2. high"];
                         const Low =  dataToArray[count][1]["3. low"];
                         const Close =  dataToArray[count][1]["4. close"];
                         const Volume =  dataToArray[count][1]["5. volume"];
-                        const ohlc = [date, Open, High]
+                        //const ohlc = [date, Open, High]
                         // console.log(ohlc)
-                      };//==end of for loop
+                      //==end of for loop
 
                        
                  })//==end third then afrer res.json()
