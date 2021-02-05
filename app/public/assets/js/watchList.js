@@ -236,7 +236,7 @@ $(document).ready(function () {
 
 
 
-      //==when Add Btn inside the pendind hic
+      //==when delete Btn inside the pendind hic
       $("#pendingList")
             .on('click', (event) => {
 
