@@ -108,7 +108,7 @@ $(document).ready(function () {
       <td id="listMarketTrend">${props.marketTrend}</td>
       <td id="listTimeFrame">${props.timeFrame}</td>
       <td id="listStartingDate">${props.startingDate}</td>
-      <td id="listEndingDate">${props.durationWD}</td>
+      <td id="listSurationWD">${props.durationWD}</td>
       <td> <button type="button" class="btn btn-danger Delete" id="deleteFromPending">Delete</button></td>
       <td> <button type="button" class="btn btn-success Add"  >Add</button></td>
       </tr>
