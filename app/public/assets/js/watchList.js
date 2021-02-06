@@ -108,10 +108,7 @@ $(document).ready(function () {
       <td id="listMarketTrend">${props.marketTrend}</td>
       <td id="listTimeFrame">${props.timeFrame}</td>
       <td id="listStartingDate">${props.startingDate}</td>
-      <td id="listEndingDate">${props.endingDate}</td>
-      <td id="listTradeDuration">${props.tradeDuration}</td>
-      <td id="listStartingDateInfo">${props.startingDateInfo}</td>
-      <td id="listEndingDateInfo">${props.endingDateInfo}</td>
+      <td id="listEndingDate">${props.durationWD}</td>
       <td> <button type="button" class="btn btn-danger Delete" id="deleteFromPending">Delete</button></td>
       <td> <button type="button" class="btn btn-success Add"  >Add</button></td>
       </tr>
@@ -144,7 +141,7 @@ $(document).ready(function () {
                   marketTrend: $("#MarketTrendSelector").val(),
                   timeFrame: $("#TimeFrameSelector").val(),
                   startingDate: $("#inputStartingDate").val().trim(),
-                  Duration  : $("#inputDuration").val().trim()
+                  durationWD  : $("#inputDuration").val().trim()
 
             };
                  console.log(watchlist)
@@ -160,10 +157,10 @@ $(document).ready(function () {
                         return false;
                   } else if (watchlist.startingDate === "") {
                         return false;
-                  } else if (watchlist.Duration === "") {
-                        return true;
+                  } else if (watchlist.durationWD === "") {
+                        return false;
                   } else {
-
+                        return true
 
                   };
             };

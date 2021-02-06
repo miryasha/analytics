@@ -12,10 +12,8 @@ CREATE TABLE watchList
       `marketTrend`  varchar(20) NOT NULL ,
       `timeFrame`   varchar(20) NOT NULL,
       `startingDate` varchar(20) NOT NULL,
-	`endingDate` varchar(20) NOT NULL,
-      `tradeDuration` varchar(20) NOT NULL,
-      `startingDateInfo` varchar(30) NOT NULL,
-      `endingDateInfo` varchar(30) NOT NULL,
+	`durationWD` varchar(20) NOT NULL,
+      
 	PRIMARY KEY (`ID`)
 );
 
