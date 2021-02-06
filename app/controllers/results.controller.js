@@ -14,7 +14,6 @@ const callStock = (id,ticker) =>{
          .then(data => {
                data.forEach(elements => {
                  const { ticker, market, strategy, marketTrend, timeFrame, startingDate, endingDate, tradeDuration, startingDateInfo, endingDateInfo } = elements;
-                 //const symbols = ticker;
                  const url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + ticker + "&outputsize=full&apikey=" + API_KEY;
                  const response = fetch(url)
                  .then(res => res.json())

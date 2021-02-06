@@ -68,7 +68,7 @@
               <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Users</a>
             </li>
           </ul>
-          <form class="d-flex">
+          <form class="d-flex"  autocomplete="off" autocapitalize="off" autocorrect="off">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" autocomplete="off" >
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
@@ -87,7 +87,7 @@
             
             <span>Ticker
               <label for="TickerSelector" class="form-label" aria-describedby="TickerSelector" ></label>
-              <input class="form-control" list="Tickers" id="TickerSelector" placeholder="Type to search..." autocomplete="off" >
+              <input class="form-control" list="Tickers" id="TickerSelector" placeholder="Type to search..." autocomplete="off" autocapitalize="off" autocorrect="off" >
               <datalist id="Tickers">
                
                 
@@ -98,20 +98,7 @@
 
         </div>
 
-        <div class="col-md-3">
-          <!--Market-->
-          <div class="input-group mb-3">
-            <span>Market
-              <label for="MarketSelector" class="form-label" aria-describedby="MarketSelector"  ></label>
-              <input class="form-control" list="Markets" id="MarketSelector" placeholder="Type to search..." autocomplete="off" >
-              <datalist id="Markets">
-                
-              </datalist>
-
-            </span>
-          </div>
-
-        </div>
+        
 
 
 
@@ -121,7 +108,7 @@
 
             <span>Strategy
               <label for="StrategySelector" class="form-label" aria-describedby="StrategySelector"></label>
-              <input class="form-control" list="Strategies" id="StrategySelector" placeholder="Type to search..." autocomplete="off" >
+              <input class="form-control" list="Strategies" id="StrategySelector" placeholder="Type to search..."   autocomplete="off" autocapitalize="off" autocorrect="off" >
               <datalist id="Strategies">
                 
               </datalist>
@@ -136,7 +123,7 @@
           <div class="input-group mb-3">
             <span>Market Trend
               <label for="MarketTrendSelector" class="form-label"  aria-describedby="MarketTrendSelector"></label>
-              <input class="form-control" list="MarketTrend" id="MarketTrendSelector" placeholder="Type to search..." autocomplete="off" >
+              <input class="form-control" list="MarketTrend" id="MarketTrendSelector" placeholder="Type to search..."  autocomplete="off" autocapitalize="off" autocorrect="off">
               <datalist id="MarketTrend">
                 <option value="Bull">
                 <option value="Neutral">
@@ -156,7 +143,7 @@
 
             <span>Time Frame
               <label for="TimeFrameSelector" class="form-label"  aria-describedby="TimeFrameSelector"></label>
-              <input class="form-control" list="TimeFrames" id="TimeFrameSelector" placeholder="Type to search..." autocomplete="off" >
+              <input class="form-control" list="TimeFrames" id="TimeFrameSelector" placeholder="Type to search..." autocomplete="off" autocapitalize="off" autocorrect="off" >
               <datalist id="TimeFrames">
                
               </datalist>
@@ -172,15 +159,15 @@
           <div class="col-md-3">
             <span>Starting Day
               <label for="inputStartingDate" class="form-label" aria-describedby="inputStartingDate" ></label>
-              <input type="text" id="inputStartingDate"  placeholder="yyyy-mm-dd" autocomplete="off" required>
+              <input type="text" id="inputStartingDate"  placeholder="yyyy-mm-dd"  autocomplete="off" autocapitalize="off" autocorrect="off" required>
             </span>
           </div>
 
           <!--End Date-->
           <div class="col-md-3">
-            <span>Ending Day
-              <label for="inputEndingDate" class="form-label"  aria-describedby="inputEndingDate"></label>
-              <input type="text" id="inputEndingDate" placeholder="yyyy-mm-dd"  autocomplete="off" required>
+            <span>Duration
+              <label for="inputDuration" class="form-label"  aria-describedby="inputDuration"></label>
+              <input type="text" id="inputDuration" placeholder="Duration in Days!!"  autocomplete="off" autocapitalize="off" autocorrect="off" required>
             </span>
           </div>
 

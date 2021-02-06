@@ -60,34 +60,37 @@ router
 
 router
 .post("/add", (req, res, next) => {
-  const {ticker, market, strategy, marketTrend, timeFrame, startingDate, endingDate} =  req.body;
-  
-  
-    const tradingDuration = async (startDay, endDay) => {
-    const startingDateInfo = await new Date(startDay);
-    const endingDateInfo = await new Date(endDay);
-    // time difference
-    const timeDiff = await Math.abs(endingDateInfo.getTime() - startingDateInfo.getTime());
-    // days difference
-    const tradeDuration = await Math.ceil(timeDiff / (1000 * 3600 * 24));
-    return {tradeDuration,startingDateInfo, endingDateInfo};
-  }
+  {ticker}
 
-  tradingDuration(startingDate, endingDate)
-  .then((dateInfo)=>{
-    const {tradeDuration} = dateInfo;
-    const startingDateInfo = dateInfo.startingDateInfo.toDateString();
-    const endingDateInfo = dateInfo.endingDateInfo.toDateString();
-    db.WatchList.insertPassing({ticker, market, strategy, marketTrend, timeFrame, startingDate, endingDate, tradeDuration, startingDateInfo, endingDateInfo})
-    .then(() => {
+
+  //const {strategy, marketTrend, timeFrame, startingDate, Duration} =  req.body;
+  //console.log(ticker, market, strategy, marketTrend, timeFrame, startingDate, Duration)
+  
+  //   const tradingDuration = async (startDay, endDay) => {
+  //   const startingDateInfo = await new Date(startDay);
+  //   const endingDateInfo = await new Date(endDay);
+  //   // time difference
+  //   const timeDiff = await Math.abs(endingDateInfo.getTime() - startingDateInfo.getTime());
+  //   // days difference
+  //   const tradeDuration = await Math.ceil(timeDiff / (1000 * 3600 * 24));
+  //   return {tradeDuration,startingDateInfo, endingDateInfo};
+  // }
+
+  // tradingDuration(startingDate, endingDate)
+  // .then((dateInfo)=>{
+  //   const {tradeDuration} = dateInfo;
+  //   const startingDateInfo = dateInfo.startingDateInfo.toDateString();
+  //   const endingDateInfo = dateInfo.endingDateInfo.toDateString();
+  //   db.WatchList.insertPassing({ticker, market, strategy, marketTrend, timeFrame, startingDate, endingDate, tradeDuration, startingDateInfo, endingDateInfo})
+  //   .then(() => {
       
-      console.log("watchlist added successfully");
-    })
-  })
-  .catch(err => {
-    console.log(err);
-    res.status(500).end();
-  });
+  //     console.log("watchlist added successfully");
+  //   })
+  // })
+  // .catch(err => {
+  //   console.log(err);
+  //   res.status(500).end();
+  // });
 
 });
 

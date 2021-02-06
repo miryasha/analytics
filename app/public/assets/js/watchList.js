@@ -4,7 +4,6 @@ $(document).ready(function () {
 
       const watchListArea = $("#pendingList");
       const tickerArea = $("#Tickers");
-      const marketArea = $("#Markets");
       const strategyArea = $("#Strategies");
       const timeFrameArea = $("#TimeFrames");
 
@@ -32,27 +31,20 @@ $(document).ready(function () {
       ///=================================
       //=======rendering data for Tikers
 
-      function renderTickers(tickerName) {
+      function renderTickers(tickerName, market) {
             return $(`
-         <option value=${tickerName}>
+         <option value=${tickerName}_${market}>
          `);
       };
 
 
-      //=======rendering data for Market
-      function renderMarkets(market) {
-            return $(`
-         <option value=${market}>
-            
-      `);
-      };
 
       // When the page loads, grab and display Tikers
       $.get("/watchlist/callTicker", (tickerName) => {
 
             tickerName.forEach(tickerName => {
-                  tickerArea.prepend(renderTickers(tickerName.Ticker_name));
-                  marketArea.prepend(renderMarkets(tickerName.Ticker_market));
+                  tickerArea.prepend(renderTickers(tickerName.Ticker_name, tickerName.Ticker_market));
+                  
             })
       });
 
@@ -147,23 +139,20 @@ $(document).ready(function () {
 
             ///make watchlist object
             const watchlist = {
-                  ticker: $("#TickerSelector").val(),
-                  market: $("#MarketSelector").val(),
+                  tickerMarket: $("#TickerSelector").val(),
                   strategy: $("#StrategySelector").val(),
                   marketTrend: $("#MarketTrendSelector").val(),
                   timeFrame: $("#TimeFrameSelector").val(),
                   startingDate: $("#inputStartingDate").val().trim(),
-                  endingDate: $("#inputEndingDate").val().trim()
+                  Duration  : $("#inputDuration").val().trim()
 
             };
-
+                 console.log(watchlist)
 
             const checkFields = async () => {
-                  if (watchlist.ticker === "") {
+                  if (watchlist.tickerMarket === "") {
                         return false;
-                  } else if (watchlist.market === "") {
-                        return false;
-                  } else if (watchlist.strategy === "") {
+                  }  else if (watchlist.strategy === "") {
                         return false;
                   } else if (watchlist.marketTrend === "") {
                         return false;
@@ -171,7 +160,7 @@ $(document).ready(function () {
                         return false;
                   } else if (watchlist.startingDate === "") {
                         return false;
-                  } else if (watchlist.endingDate === "") {
+                  } else if (watchlist.Duration === "") {
                         return true;
                   } else {
 
@@ -203,8 +192,7 @@ $(document).ready(function () {
       const clearBtn = $('#ClearBtn')
             .on("click", (event) => {
                   event.preventDefault();
-                  $("#TickerSelector").val(""),
-                        $("#MarketSelector").val(""),
+                        $("#TickerSelector").val(""),
                         $("#StrategySelector").val(""),
                         $("#MarketTrendSelector").val(""),
                         $("#TimeFrameSelector").val(""),
