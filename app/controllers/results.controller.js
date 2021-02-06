@@ -24,8 +24,7 @@ const callStock = (id,ticker) =>{
                         const dataToArray =  Object.entries(ohlcData);  //loop throgh all keys & values
                         let index = ''; 
                         let loopCounter = parseInt(durationWD);  
-                        let numberOfLoops =   parseInt(loopCounter - index);           
-                            
+                                      
                               //loop inseide the data to index to ending day
                            for (let counter = 0; counter < dataToArray.length; counter++) {
                                 const date =  dataToArray[counter][0];//==brings back the dates
@@ -33,11 +32,12 @@ const callStock = (id,ticker) =>{
                               if(dataToArray[counter][0] === startingDate){ index = counter} ; //== End of if statement 
                                   
                             }; //== End of for loop to find the index of ending day
-
-                            console.log(`index of starting date is ${index}, and number of times we need to loop for ${numberOfLoops}`);                      
+                            let numberOfLoops = parseInt(index - loopCounter); 
+                            console.log(`index of starting date is ${index}, and number of times we need to loop for ${numberOfLoops}`); 
+                            
                              let count = index;
-                            for (count  ; count > 5 ;  count--) {
-                              console.log()
+                            for (count  ; count >= numberOfLoops ;  count--) {
+                              console.log(count)
                             // const date =  dataToArray[count][0];
                             // const Open =  dataToArray[count][1]["1. open"];
                             // const High =  dataToArray[count][1]["2. high"];
