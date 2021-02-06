@@ -60,9 +60,28 @@ router
 
 router
 .post("/add", (req, res, next) => {
-  {ticker}
 
+  const {tickerMarket} = req.body;
+    
+  const constructor = (tickerMarket) => {
+    console.log(tickerMarket)
+     const splitTicker = tickerMarket.split("_");
+    if( splitTicker.length  === 2 ){  
+      const ticker = splitTicker[0]; const market = splitTicker[1]; console.log(ticker, market)
+      } else 
+      {  
+        const tickerPartOne = splitTicker[0];     const tickerPartTwo = splitTicker[1];  const ticker = `${tickerPartOne}_${tickerPartTwo}`; const market = splitTicker[2]; console.log(ticker, market)
+           };//end of else
 
+  };//==end of constructor
+
+  constructor(tickerMarket)
+  
+
+            
+            
+
+   
   //const {strategy, marketTrend, timeFrame, startingDate, Duration} =  req.body;
   //console.log(ticker, market, strategy, marketTrend, timeFrame, startingDate, Duration)
   
