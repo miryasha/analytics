@@ -37,15 +37,15 @@ const callStock = (id,ticker) =>{
                             
                              let count = index;
                             for (count  ; count >= numberOfLoops ;  count--) {
-                              console.log(count)
-                            // const date =  dataToArray[count][0];
-                            // const Open =  dataToArray[count][1]["1. open"];
-                            // const High =  dataToArray[count][1]["2. high"];
-                            // const Low =  dataToArray[count][1]["3. low"];
-                            // const Close =  dataToArray[count][1]["4. close"];
-                            // const Volume =  dataToArray[count][1]["5. volume"];
-                            // //const OHLCV =  (Symbol, date, Open, High, Low, Close, Volume);
-                            //  console.log(Symbol, date, Open, High, Low, Close, Volume)       
+                              
+                            const date =  dataToArray[count][0];
+                            const Open =  dataToArray[count][1]["1. open"];
+                            const High =  dataToArray[count][1]["2. high"];
+                            const Low =  dataToArray[count][1]["3. low"];
+                            const Close =  dataToArray[count][1]["4. close"];
+                            const Volume =  dataToArray[count][1]["5. volume"];
+                            
+                             console.log(Symbol, date, Open, High, Low, Close, Volume)       
                           
                            }; //== end of for loop to find the data between two dates
 
