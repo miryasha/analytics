@@ -83,18 +83,24 @@ const results = () => {
       const mapLow = data.map((e) => { return  e.low});//calculate min
       const minLow = Math.min(...mapLow);
 
-      const whichDateWasMax = data.map((e) => { if( parseFloat(e.high) ===  maxHigh   ){return e.dateTD } else { return } ;});
-      const dateMax =  whichDateWasMax.filter(e => e).toString();//in which date maximum has hit        
+      const whichDateWasMax = data.map((e) => { if( parseFloat(e.high) ===  maxHigh ) {return e.dateTD } else { return } ;});
+      const dateMax =  whichDateWasMax.filter(e => e).toString();//in which date maximum has hit  
+      
+      const whenMaxHit = data.filter(e => {if (dateMax === e.dateTD) {console.log( e.ID) } else { return };})
+
              
       const whichDateWasMin = data.map((e) => { if (parseFloat(e.low) === minLow) { return e.dateTD } else { return }; });
       const dateMin = whichDateWasMin.filter(e => e).toString();//in which date maximum has hit
+
+      //const whenMinHit
 
       const findStartingDate = data.map(e => { if(e.startingDate === e.dateTD){return e.dateTD } else { return } ;});
       const startingDate = findStartingDate.filter(e => e).toString();
       
       const findEndingDate = data.map(e => {if( parseInt(e.durationWD) + 1 === parseInt(e.ID) ){return e.dateTD } else { return };});
       const endigDate = findEndingDate.filter(e => e).toString();
-     console.log(startingDate,endigDate )
+     
+
 
      
 
