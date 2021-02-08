@@ -93,13 +93,21 @@ const results = () => {
       const minHitAfterDays = minHitAftermap.filter(e => e).toString();
       
       
+        ///==starting cal
+      const mapStartingDate = data.map(e => { if(e.startingDate === e.dateTD){return e.dateTD } else { return } ;});
+      const startingDate = mapStartingDate.filter(e => e).toString();
+      const mapStartPrice = data.map(e => { if(e.startingDate === e.dateTD){return e.open } else { return } ;});
+      const filterStartPrice = mapStartPrice.filter(e => e).toString();
+      const startPrice = parseFloat(filterStartPrice);
 
-      const findStartingDate = data.map(e => { if(e.startingDate === e.dateTD){return e.dateTD } else { return } ;});
-      const startingDate = findStartingDate.filter(e => e).toString();
-      
-      const findEndingDate = data.map(e => {if( parseInt(e.durationWD) + 1 === parseInt(e.ID) ){return e.dateTD } else { return };});
-      const endigDate = findEndingDate.filter(e => e).toString();
-     
+      ///==ending cal
+      const mapEndingDate = data.map(e => {if( parseInt(e.durationWD) + 1 === parseInt(e.ID) ){return e.dateTD } else { return };});
+      const endigDate = mapEndingDate.filter(e => e).toString();
+      const mapEndPrice = data.map(e => { if(parseInt(e.durationWD) + 1 === parseInt(e.ID)){return e.close } else { return } ;});
+      const filterEndPrice = mapEndPrice.filter(e => e).toString();
+      const endPrice = parseFloat(filterEndPrice);
+
+      console.log(startPrice, endPrice)
 
      
      
