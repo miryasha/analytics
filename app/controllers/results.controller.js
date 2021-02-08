@@ -8,72 +8,146 @@ const connection = require("../cofig/dbConnection");
 
 
 
-// const callStock = (id) =>{
+const callStock = (id) =>{
 
-//   db.WatchList.findRow(id)
-//          .then(data => {
-//                data.forEach(elements => {
-//                  const {ticker, market, strategy, marketTrend, timeFrame, startingDate, durationWD} = elements;
-//                  const url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + ticker + "&outputsize=full&apikey=" + API_KEY;
-//                  const response = fetch(url)
-//                  .then(res => res.json())
-//                  .then(data => {  
-//                               const callStock = async (data) =>{
-//                                    const symbol = await data["Meta Data"]["2. Symbol"];
-//                                    const ohlcData = await data["Time Series (Daily)"];
-//                                    const dataToArray = await Object.entries(ohlcData);  //loop throgh all keys & values
-//                                    let index = ''; 
-//                                    let loopCounter = await parseInt(durationWD);  
+  db.WatchList.findRow(id)
+         .then(data => {
+               data.forEach(elements => {
+                 const {ticker, market, strategy, marketTrend, timeFrame, startingDate, durationWD} = elements;
+                 const url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + ticker + "&outputsize=full&apikey=" + API_KEY;
+                 const response = fetch(url)
+                 .then(res => res.json())
+                 .then(data => {  
+                              const callStock = async (data) =>{
+                                   const symbol = await data["Meta Data"]["2. Symbol"];
+                                   const ohlcData = await data["Time Series (Daily)"];
+                                   const dataToArray = await Object.entries(ohlcData);  //loop throgh all keys & values
+                                   let index = ''; 
+                                   let loopCounter = await parseInt(durationWD);  
                                       
-//                                    //loop inseide the data to index to ending day
-//                                     for (let counter = 0; counter < dataToArray.length; counter++) {
-//                                    const date =  dataToArray[counter][0];//==brings back the dates
+                                   //loop inseide the data to index to ending day
+                                    for (let counter = 0; counter < dataToArray.length; counter++) {
+                                   const date =  dataToArray[counter][0];//==brings back the dates
                                                 
-//                                     if(dataToArray[counter][0] === startingDate){ index = counter} ; //== End of if statement 
+                                    if(dataToArray[counter][0] === startingDate){ index = counter} ; //== End of if statement 
                                   
-//                                     }; //== End of for loop to find the index of ending day
-//                                     let numberOfLoops = await parseInt(index - loopCounter); 
+                                    }; //== End of for loop to find the index of ending day
+                                    let numberOfLoops = await parseInt(index - loopCounter); 
                                     
                                     
-//                                    for (let count = index; count >= numberOfLoops ;  count--) {
+                                   for (let count = index; count >= numberOfLoops ;  count--) {
                               
-//                                         const dateTD = await dataToArray[count][0];
-//                                         const open = await dataToArray[count][1]["1. open"];
-//                                         const high = await dataToArray[count][1]["2. high"];
-//                                         const low =  await dataToArray[count][1]["3. low"];
-//                                         const close = await dataToArray[count][1]["4. close"];
+                                        const dateTD = await dataToArray[count][0];
+                                        const open = await dataToArray[count][1]["1. open"];
+                                        const high = await dataToArray[count][1]["2. high"];
+                                        const low =  await dataToArray[count][1]["3. low"];
+                                        const close = await dataToArray[count][1]["4. close"];
                                         
                               
-//                                          resultMaker(symbol, dateTD, open, high, low, close,market, strategy, marketTrend, timeFrame, startingDate, durationWD, id); 
+                                         resultMaker(symbol, dateTD, open, high, low, close,market, strategy, marketTrend, timeFrame, startingDate, durationWD, id); 
                                             
-//                                         }; //== end of for loop to find the data between two dates
+                                        }; //== end of for loop to find the data between two dates
 
-//                                  };//==end of callStock
-//                                  callStock(data).catch(err => { console.log(err); });
-//                               })//==end third then afrer res.json()
+                                 };//==end of callStock
+                                 callStock(data).catch(err => { console.log(err); });
+                              })//==end third then afrer res.json()
                        
-//                      });//==end first forEach
+                     });//==end first forEach
                                 
-//         }).catch(err => {
-//           console.log(err);
-//            //res.status(500).end();
-//        });//==end first then
+        }).catch(err => {
+          console.log(err);
+           //res.status(500).end();
+       });//==end first then
                    
-//                    const resultMaker = (symbol, dateTD, open, high, low, close, market, strategy, marketTrend, timeFrame, startingDate, durationWD,id) =>{
-//                     //console.log(symbol, dateTD, open, high, low, close, market, strategy, marketTrend, timeFrame, startingDate, durationWD,id)
-//                     db.Results.insertPassingresults({symbol, dateTD, open, high, low, close, market, strategy, marketTrend, timeFrame, startingDate, durationWD})
-//                     // .then(db.WatchList.deleteFromPassng(id))
-//                      //.then(results())
-//                      //.catch(err => {console.log(err);});
+                   const resultMaker = (symbol, dateTD, open, high, low, close, market, strategy, marketTrend, timeFrame, startingDate, durationWD,id) =>{
+                    //console.log(symbol, dateTD, open, high, low, close, market, strategy, marketTrend, timeFrame, startingDate, durationWD,id)
+                    db.Results.insertPassingresults({symbol, dateTD, open, high, low, close, market, strategy, marketTrend, timeFrame, startingDate, durationWD})
+                    // .then(db.WatchList.deleteFromPassng(id))
+                    .then(results())
+                    .catch(err => {console.log(err);});
 
-//                    };//end of resultMaker func
+                   };//end of resultMaker func
          
                            
-//   };//=end callStock func
+  };//=end callStock func
   
 
 
 // // ////===============================================
+//call forex
+
+
+const  callForex = (id,ticker) =>{
+  
+  const splitTicker = ticker.split("_");
+  const tickerOne = splitTicker[0];
+  const tickerTwo = splitTicker[1];
+  db.WatchList.findRow(id)
+         .then(data => {
+               data.forEach(elements => {
+                 const {ticker, market, strategy, marketTrend, timeFrame, startingDate, durationWD} = elements;
+                 const url = "https://www.alphavantage.co/query?function=FX_DAILY&from_symbol=" + tickerOne + "&to_symbol=" + tickerTwo + "&outputsize=full&apikey=" + API_KEY;
+                 const response = fetch(url)
+                 .then(res => res.json())
+                 .then(data => {  
+                              const callforex = async (data) =>{
+
+
+                                   const symbolOne = await data["Meta Data"]["2. From Symbol"];
+                                   const symbolOned = await (symbolOne + "_");
+                                   const symbolTwo = await data["Meta Data"]["3. To Symbol"];
+                                   const symbol = await symbolOned + symbolTwo;
+                                   const ohlcData = await data["Time Series FX (Daily)"];
+                                   const dataToArray = await Object.entries(ohlcData);  //loop throgh all keys & values
+                                   let index = ''; 
+                                   let loopCounter = await parseInt(durationWD);  
+                                      
+                                   //loop inseide the data to index to ending day
+                                    for (let counter = 0; counter < dataToArray.length; counter++) {
+                                   const date =  dataToArray[counter][0];//==brings back the dates
+                                                
+                                    if(dataToArray[counter][0] === startingDate){ index = counter} ; //== End of if statement 
+                                  
+                                    }; //== End of for loop to find the index of ending day
+                                    let numberOfLoops = await parseInt(index - loopCounter); 
+                                    
+                                    
+                                   for (let count = index; count >= numberOfLoops ;  count--) {
+                              
+                                        const dateTD = await dataToArray[count][0];
+                                        const open = await dataToArray[count][1]["1. open"];
+                                        const high = await dataToArray[count][1]["2. high"];
+                                        const low =  await dataToArray[count][1]["3. low"];
+                                        const close = await dataToArray[count][1]["4. close"];
+                                        
+                              
+                                         resultMaker(symbol, dateTD, open, high, low, close,market, strategy, marketTrend, timeFrame, startingDate, durationWD, id); 
+                                            
+                                        }; //== end of for loop to find the data between two dates
+
+                                 };//==end of callStock
+                                 callforex(data).catch(err => { console.log(err); });
+                              })//==end third then afrer res.json()
+                       
+                     });//==end first forEach
+                                
+        }).catch(err => {
+          console.log(err);
+           //res.status(500).end();
+       });//==end first then
+                   
+                   const resultMaker = (symbol, dateTD, open, high, low, close, market, strategy, marketTrend, timeFrame, startingDate, durationWD,id) =>{
+                    //console.log(symbol, dateTD, open, high, low, close, market, strategy, marketTrend, timeFrame, startingDate, durationWD,id)
+                    db.Results.insertPassingresults({symbol, dateTD, open, high, low, close, market, strategy, marketTrend, timeFrame, startingDate, durationWD})
+                    // .then(db.WatchList.deleteFromPassng(id))
+                    .then(results())
+                    .catch(err => {console.log(err);});
+
+                   };//end of resultMaker func
+         
+                           
+  };//=end callForex func
+
 
 //  ////==============================================
 
@@ -181,7 +255,7 @@ const results = async () => {
 };//==end of results
 
 
-results();
+results()
 
 router
   .post("/add", (req, res, next) => {
