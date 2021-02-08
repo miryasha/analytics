@@ -23,6 +23,7 @@
      maxDiffToOpen     varchar(20) NOT NULL,
      maxDiffToClose    varchar(20) NOT NULL,
      minDiffToOpen     varchar(20) NOT NULL,
+     minDiffToClose     varchar(20) NOT NULL,
      openDiffToClose   varchar(20) NOT NULL,
      
      PRIMARY KEY (ID) );

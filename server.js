@@ -17,7 +17,6 @@ app.use(express.static("./app/public"));
 
 // Routes
 // =============================================================
-app.use("/apiCall",controllers.apiCall);
 app.use("/watchlist", controllers.watchList);
 app.use("/results", controllers.results);
 app.use("/elements", controllers.elements);
