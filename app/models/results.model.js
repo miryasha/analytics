@@ -5,28 +5,18 @@ class Results extends Base {
       return this.query("SELECT * FROM  results")
     }
 
-    
-
-  //   findAllBetween(tickerName, startingDate, endingDate) {
-  //     return this.query("SELECT * FROM  qoutes_daily  WHERE  Symbol = "+ tickerName +" AND date  BETWEEN  "+ startingDate +" AND  "+ endingDate +"; ");
-  // }
-  //SELECT * FROM qoutes_daily  where   Symbol='SPY' and date BETWEEN '2021-01-29' and '2021-02-02';
-
     findAllBetween(tickerName, startingDate, endingDate) {
                                                          
         return this.query(`SELECT * FROM  qoutes_daily  WHERE  Symbol = '${tickerName}' AND  date BETWEEN '${startingDate}' AND '${endingDate}' ;`);
     }
+    insertPassingresults(data){
+        return this.query("INSERT INTO pending_results SET?", [data]);
+    }
     
-
-    insert(tickerName, data) {
-        return this.query("INSERT INTO qoutes_daily" + tickerName + " SET?", [data]);
+    delete(id) {
+        return this.query("DELETE FROM pending_results WHERE? ", [id]);
     }
-    delete(tickerName, id) {
-        return this.query("DELETE FROM qoutes_daily" + tickerName + " WHERE? ", [id]);
-    }
-    addNewColumn(tickerName, name) {
-        return this.query("ALTER TABLE qoutes_daily" + tickerName + " ADD " + name + " varchar(255)");
-  }
+  
 
   createResult() {
 
