@@ -39,7 +39,7 @@ CREATE TABLE  pending_results
      high   varchar(20) NOT NULL,
      low     varchar(20) NOT NULL,
      close    varchar(20) NOT NULL, 
-     volume  varchar(20) NOT NULL,
+     
      market    varchar(20) NOT NULL,  
      strategy  varchar(20) NOT NULL,
      marketTrend        varchar(20) NOT NULL, 

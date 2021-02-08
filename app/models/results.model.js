@@ -17,10 +17,9 @@ class Results extends Base {
       return this.query("SELECT * FROM pending_results")
     }
     
-    delete(id) {
-        return this.query("DELETE FROM pending_results WHERE? ", [id]);
-    }
-  
+    deletePending() {
+      return this.query("DELETE FROM pending_results WHERE ID >= 0 ");
+  }
 
   createResult() {
 
