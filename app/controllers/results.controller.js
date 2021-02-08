@@ -19,7 +19,7 @@ const callStock = (id,ticker) =>{
                  .then(res => res.json())
                  .then(data => {  
                               const callStock = async (data) =>{
-                                   const Symbol = await data["Meta Data"]["2. Symbol"];
+                                   const symbol = await data["Meta Data"]["2. Symbol"];
                                    const ohlcData = await data["Time Series (Daily)"];
                                    const dataToArray = await Object.entries(ohlcData);  //loop throgh all keys & values
                                    let index = ''; 
@@ -37,14 +37,14 @@ const callStock = (id,ticker) =>{
                                     
                                    for (let count = index; count >= numberOfLoops ;  count--) {
                               
-                                        const date = await dataToArray[count][0];
-                                        const Open = await dataToArray[count][1]["1. open"];
-                                        const High = await dataToArray[count][1]["2. high"];
-                                        const Low =  await dataToArray[count][1]["3. low"];
-                                        const Close = await dataToArray[count][1]["4. close"];
-                                        const Volume = await dataToArray[count][1]["5. volume"];
+                                        const dateTD = await dataToArray[count][0];
+                                        const open = await dataToArray[count][1]["1. open"];
+                                        const high = await dataToArray[count][1]["2. high"];
+                                        const low =  await dataToArray[count][1]["3. low"];
+                                        const close = await dataToArray[count][1]["4. close"];
+                                        const volume = await dataToArray[count][1]["5. volume"];
                               
-                                         resultMaker(Symbol, date, Open, High, Low, Close, Volume,market, strategy, marketTrend, timeFrame, startingDate, durationWD ); 
+                                         resultMaker(symbol, dateTD, open, high, low, close, volume,market, strategy, marketTrend, timeFrame, startingDate, durationWD ); 
                                             
                                         }; //== end of for loop to find the data between two dates
 
@@ -59,23 +59,48 @@ const callStock = (id,ticker) =>{
            //res.status(500).end();
        });//==end first then
                    
-                   const resultMaker = (Symbol, date, Open, High, Low, Close, Volume, market, strategy, marketTrend, timeFrame, startingDate, durationWD) =>{
+                   const resultMaker = (symbol, dateTD, open, high, low, close, volume, market, strategy, marketTrend, timeFrame, startingDate, durationWD) =>{
                     
-                    db.Results.insertPassingresults({Symbol, date, Open, High, Low, Close, Volume,market, strategy, marketTrend, timeFrame, startingDate, durationWD}).catch(err => {console.log(err);});
+                    db.Results.insertPassingresults({symbol, dateTD, open, high, low, close, volume,market, strategy, marketTrend, timeFrame, startingDate, durationWD})
+                    .then(results())
+                    .catch(err => {console.log(err);});
 
                    };//end of resultMaker func
          
                            
   };//=end callStock func
+  
 
-
-
+  //const{symbol, dateTD, open, high, low, close, volume,market, strategy, marketTrend, timeFrame, startingDate, durationWD}
 //==make results
 const results = () => {
+   db.Results.findAllPending()
+   .then(data => {
 
+      const mapHigh = data.map((e) => { return  e.high});//calculate max
+      const maxHigh = Math.max(...mapHigh);
+      
+      const mapLow = data.map((e) => { return  e.low});//calculate min
+      const minLow = Math.min(...mapLow);
+
+      const whichDateWasMax = data.map((e) => { if( parseFloat(e.high) ===  maxHigh   ){return e.dateTD } else { return } ;});
+      const dateMax =  whichDateWasMax.filter(e => e).toString();//in which date maximum has hit        
+             
+      const whichDateWasMin = data.map((e) => { if (parseFloat(e.low) === minLow) { return e.dateTD } else { return }; });
+      const dateMin = whichDateWasMin.filter(e => e).toString();//in which date maximum has hit
+
+      const findStartingdate = data.map(e => { console.log(e.startingDate)});
+      const findEndingdate = data.map(e => { if( e.id === e.durationWD + 1 ){console.log(e.dateTD)} });
+     
+
+     
+
+     
+     
+   })//==end of findAll Pending then
 };//==end of results
 
-
+results()
 
 
 

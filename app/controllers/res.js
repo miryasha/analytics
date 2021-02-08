@@ -2,8 +2,8 @@ db.WatchList.findRow(id)
 .then(data => {
           data.forEach(
             elements => {
-           const { ticker, market, strategy, marketTrend, timeFrame, startingDate, endingDate, tradeDuration, startingDateInfo, endingDateInfo } = elements;
-           db.Results.findAllBetween(ticker,startingDate, endingDate)
+            const { ticker, market, strategy, marketTrend, timeFrame, startingDate, endingDate, tradeDuration, startingDateInfo, endingDateInfo } = elements;
+            db.Results.findAllBetween(ticker,startingDate, endingDate)
            
 
             .then( allData =>{
