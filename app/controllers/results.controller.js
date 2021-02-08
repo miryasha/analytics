@@ -60,10 +60,10 @@ const callStock = (id) =>{
        });//==end first then
                    
                    const resultMaker = (symbol, dateTD, open, high, low, close, market, strategy, marketTrend, timeFrame, startingDate, durationWD,id) =>{
-                    //console.log(symbol, dateTD, open, high, low, close, market, strategy, marketTrend, timeFrame, startingDate, durationWD,id)
+                    
                     db.Results.insertPassingresults({symbol, dateTD, open, high, low, close, market, strategy, marketTrend, timeFrame, startingDate, durationWD})
-                    // .then(db.WatchList.deleteFromPassng(id))
                     .then(results())
+                    then(db.WatchList.deleteFromPassng(id))
                     .catch(err => {console.log(err);});
 
                    };//end of resultMaker func
@@ -137,10 +137,10 @@ const  callForex = (id,ticker) =>{
        });//==end first then
                    
                    const resultMaker = (symbol, dateTD, open, high, low, close, market, strategy, marketTrend, timeFrame, startingDate, durationWD,id) =>{
-                    //console.log(symbol, dateTD, open, high, low, close, market, strategy, marketTrend, timeFrame, startingDate, durationWD,id)
+                    
                     db.Results.insertPassingresults({symbol, dateTD, open, high, low, close, market, strategy, marketTrend, timeFrame, startingDate, durationWD})
-                    // .then(db.WatchList.deleteFromPassng(id))
                     .then(results())
+                    then(db.WatchList.deleteFromPassng(id))
                     .catch(err => {console.log(err);});
 
                    };//end of resultMaker func
@@ -256,8 +256,8 @@ const results = async () => {
      };//end of calculateResults func
      
      calculateResults(data)
-     .then(data =>{console.log(data);})//db.Results.insertToResult(data)
-     //.then(db.Results.deletePending())
+     .then(data =>{db.Results.insertToResult(data)})//db.Results.insertToResult(data)
+     .then(db.Results.deletePending())
      .catch(err => {console.log(err);});
      
      
