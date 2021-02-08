@@ -93,23 +93,27 @@ const results = () => {
       const minHitAfterDays = minHitAftermap.filter(e => e).toString();
       
       
-        ///==starting cal
+        ///==starting cals
       const mapStartingDate = data.map(e => { if(e.startingDate === e.dateTD){return e.dateTD } else { return } ;});
       const startingDate = mapStartingDate.filter(e => e).toString();
       const mapStartPrice = data.map(e => { if(e.startingDate === e.dateTD){return e.open } else { return } ;});
       const filterStartPrice = mapStartPrice.filter(e => e).toString();
       const startPrice = parseFloat(filterStartPrice);
 
-      ///==ending cal
+      ///==ending cals
       const mapEndingDate = data.map(e => {if( parseInt(e.durationWD) + 1 === parseInt(e.ID) ){return e.dateTD } else { return };});
       const endigDate = mapEndingDate.filter(e => e).toString();
       const mapEndPrice = data.map(e => { if(parseInt(e.durationWD) + 1 === parseInt(e.ID)){return e.close } else { return } ;});
       const filterEndPrice = mapEndPrice.filter(e => e).toString();
       const endPrice = parseFloat(filterEndPrice);
 
-      console.log(startPrice, endPrice)
-
-     
+      ///==diff cals
+     const maxDiffToOpen = startPrice - maxHigh;
+     const maxDiffToClose = maxHigh - endPrice;
+     const minDiffToOpen = startPrice - minLow;
+     const minDiffToClose = minLow - endPrice;
+     const openDiffToClose = startPrice - endPrice;
+     console.log(maxDiffToClose, openDiffToClose)
      
 
      
