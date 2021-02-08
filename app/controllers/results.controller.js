@@ -76,21 +76,23 @@ const callStock = (id,ticker) =>{
 const results = () => {
    db.Results.findAllPending()
    .then(data => {
-
+     ///=======max cals
       const mapHigh = data.map((e) => { return  e.high});//calculate max
       const maxHigh = Math.max(...mapHigh);
       const whichDateWasMax = data.map((e) => { if( parseFloat(e.high) ===  maxHigh ) {return e.dateTD } else { return } ;});
       const dateMax =  whichDateWasMax.filter(e => e).toString();//in which date maximum has hit  
-      const maxHitAfter = data.filter(e => {if (dateMax === e.dateTD) {console.log( e.ID)} else { return };})
-          
+      const maxHitAftermap = data.map(e => {if (dateMax === e.dateTD) {return e.ID} else { return };});
+      const maxHitAfterDays = maxHitAftermap.filter(e => e).toString();
+
+     ///=========min cals
       const mapLow = data.map((e) => { return  e.low});//calculate min
       const minLow = Math.min(...mapLow);
       const whichDateWasMin = data.map((e) => { if (parseFloat(e.low) === minLow) { return e.dateTD } else { return }; });
       const dateMin = whichDateWasMin.filter(e => e).toString();
-      const minHitAfter = data.filter(e => {if (dateMin === e.dateTD) { console.log( e.ID) } else { return };})
-      //const minHitAterDays = minHitAfter.filter(e => e);
-      //console.log(minHitAterDays)
-      //const minAterOpen
+      const minHitAftermap = data.map(e => {if (dateMin === e.dateTD) {return e.ID } else { return };});
+      const minHitAfterDays = minHitAftermap.filter(e => e).toString();
+      
+      
 
       const findStartingDate = data.map(e => { if(e.startingDate === e.dateTD){return e.dateTD } else { return } ;});
       const startingDate = findStartingDate.filter(e => e).toString();
