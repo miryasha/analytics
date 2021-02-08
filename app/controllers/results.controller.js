@@ -266,8 +266,6 @@ const results = async () => {
 };//==end of results
 
 
-results()
-
 router
   .post("/add", (req, res, next) => {
     const {id,ticker} = req.body ;
