@@ -113,7 +113,33 @@ const results = () => {
      const minDiffToOpen = startPrice - minLow;
      const minDiffToClose = minLow - endPrice;
      const openDiffToClose = startPrice - endPrice;
-     console.log(maxDiffToClose, openDiffToClose)
+
+     //message for win/ loss
+     let statusTrade = '';
+             const positionResults = ( startPrice, endPrice) => {
+                const expreion = startPrice >= endPrice ? "Sell" : "Buy"
+                   
+               switch (expreion) {
+
+                 case "Sell"://case of wining sell
+                 statusTrade =  "Sell Won ,Buy Lost, Neutral";                     
+                   
+                 break;
+
+                 case  "Buy" ://case of wining buy
+                        
+                 statusTrade = "Buy Won,Sell Lost, Neutral";   
+                 break;
+                   //case "Neutral":
+
+                 default:
+                   // code block
+                   statusTrade = "Neutral";
+               }
+             };
+
+              positionResults(startPrice, endPrice);
+     console.log(statusTrade)
      
 
      
