@@ -236,6 +236,7 @@ const results = async () => {
        minLow, dateMin, minHitAfterDays,
        maxDiffToOpen, maxDiffToClose, minDiffToOpen, minDiffToClose, openDiffToClose
        )
+       
      };//end of calculateResults func
      
      calculateResults(data)
