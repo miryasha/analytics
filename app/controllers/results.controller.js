@@ -76,7 +76,10 @@ const callStock = (id,ticker) =>{
 const results = () => {
    db.Results.findAllPending()
    .then(data => {
-     ///=======max cals
+
+    const calculateResults = (data) =>{
+
+      ///=======max cals
       const mapHigh = data.map((e) => { return  e.high});//calculate max
       const maxHigh = Math.max(...mapHigh);
       const whichDateWasMax = data.map((e) => { if( parseFloat(e.high) ===  maxHigh ) {return e.dateTD } else { return } ;});
@@ -139,9 +142,11 @@ const results = () => {
              };
 
               positionResults(startPrice, endPrice);
-     console.log(statusTrade)
      
-
+     console.log( symbol , market, strategy, marketTrend, timeFrame, durationWD, statusTrade, startingDate, startPrice, endigDate,endPrice, maxHigh, dateMax,maxHitAfterDays,minLow, dateMin, minHitAfterDays)
+     };//end of calculateResults func
+     
+     calculateResults(data)
      
      
    })//==end of findAll Pending then
