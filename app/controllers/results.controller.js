@@ -71,14 +71,22 @@ const callStock = (id,ticker) =>{
   };//=end callStock func
   
 
-  //const{symbol, dateTD, open, high, low, close, volume,market, strategy, marketTrend, timeFrame, startingDate, durationWD}
+ 
 //==make results
 const results = () => {
    db.Results.findAllPending()
    .then(data => {
-
+     
+    
+       
     const calculateResults = (data) =>{
 
+       const symbol = data[0]["symbol"];
+       const market = data[0]["market"];
+       const strategy = data[0]["strategy"];
+       const marketTrend = data[0]["marketTrend"];
+       const timeFrame = data[0]["timeFrame"];
+       const durationWD = data[0]["durationWD"];
       ///=======max cals
       const mapHigh = data.map((e) => { return  e.high});//calculate max
       const maxHigh = Math.max(...mapHigh);
@@ -142,7 +150,7 @@ const results = () => {
              };
 
               positionResults(startPrice, endPrice);
-     
+             
      console.log( symbol , market, strategy, marketTrend, timeFrame, durationWD, statusTrade, startingDate, startPrice, endigDate,endPrice, maxHigh, dateMax,maxHitAfterDays,minLow, dateMin, minHitAfterDays)
      };//end of calculateResults func
      
