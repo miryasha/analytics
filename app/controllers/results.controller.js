@@ -63,7 +63,7 @@ const callStock = (id) =>{
                     
                     db.Results.insertPassingresults({symbol, dateTD, open, high, low, close, market, strategy, marketTrend, timeFrame, startingDate, durationWD})
                     .then(results())
-                    then(db.WatchList.deleteFromPassng(id))
+                    .then(db.WatchList.deleteFromPassng(id))
                     .catch(err => {console.log(err);});
 
                    };//end of resultMaker func
@@ -140,7 +140,7 @@ const  callForex = (id,ticker) =>{
                     
                     db.Results.insertPassingresults({symbol, dateTD, open, high, low, close, market, strategy, marketTrend, timeFrame, startingDate, durationWD})
                     .then(results())
-                    then(db.WatchList.deleteFromPassng(id))
+                    .then(db.WatchList.deleteFromPassng(id))
                     .catch(err => {console.log(err);});
 
                    };//end of resultMaker func
