@@ -108,7 +108,7 @@ $(document).ready(function () {
       <td id="listMarketTrend">${props.marketTrend}</td>
       <td id="listTimeFrame">${props.timeFrame}</td>
       <td id="listStartingDate">${props.startingDate}</td>
-      <td id="listSurationWD">${props.durationWD}</td>
+      <td id="listDurationWD">${props.durationWD}</td>
       <td> <button type="button" class="btn btn-danger Delete" id="deleteFromPending">Delete</button></td>
       <td> <button type="button" class="btn btn-success Add"  >Add</button></td>
       </tr>
@@ -144,7 +144,7 @@ $(document).ready(function () {
                   durationWD  : $("#inputDuration").val().trim()
 
             };
-                 console.log(watchlist)
+                 
 
             const checkFields = async () => {
                   if (watchlist.tickerMarket === "") {
@@ -206,12 +206,13 @@ $(document).ready(function () {
       $("#pendingList")
             .on('click', (event) => {
 
-                  if (event.target.classList.contains('Add')) {
+                  if (event.target.classList.contains('Add')) {                         
 
                         const rowData = { id: event.target.parentElement.parentElement.querySelector("#listId").innerText,
-                                          ticker: event.target.parentElement.parentElement.querySelector("#listTicker").innerText
+                                          ticker: event.target.parentElement.parentElement.querySelector("#listTicker").innerText,
+                                          duration: event.target.parentElement.parentElement.querySelector("#listDurationWD").innerText
                                         };                                    
-                         
+                                        
                         $.post("/results/add", rowData)
                         displayMessage("success", "Watchlist has sent to Results");
                         setTimeout(function () { location.reload(); }, 2000);
@@ -225,8 +226,15 @@ $(document).ready(function () {
       //==when delete Btn inside the pendind hic
       $("#pendingList")
             .on('click', (event) => {
-
-                 
+                         console.log(event)   
+                  if (event.target.classList.contains('Delete')) {                         
+ 
+                        const rowData = { id: event.target.parentElement.parentElement.querySelector("#listId").innerText};
+                          
+                        $.post("/watchlist/delete", rowData)
+                        displayMessage("success", "Watchlist has Deleted");
+                        setTimeout(function () { location.reload(); }, 2000);
+                  }
 
             });
 

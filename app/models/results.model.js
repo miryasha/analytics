@@ -13,12 +13,12 @@ class Results extends Base {
         return this.query("INSERT INTO pending_results SET?", [data]);
     }
     
-    findAllPending(){
-      return this.query("SELECT * FROM pending_results")
+    findAllPending(durationWD){
+      return this.query(`SELECT * FROM pending_results WHERE durationWD = ${durationWD}`)
     }
     
-    deletePending() {
-      return this.query("DELETE FROM pending_results WHERE ID >= 0 ");
+    deletePending(durationWD) {
+      return this.query(`DELETE FROM pending_results WHERE  durationWD = ${durationWD}`);
   }
 
   
