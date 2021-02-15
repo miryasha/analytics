@@ -136,10 +136,10 @@ $(document).ready(function () {
 
             ///make watchlist object
             const watchlist = {
-                  tickerMarket: $("#TickerSelector").val(),
-                  strategy: $("#StrategySelector").val(),
-                  marketTrend: $("#MarketTrendSelector").val(),
-                  timeFrame: $("#TimeFrameSelector").val(),
+                  tickerMarket: $("#TickerSelector").val().trim(),
+                  strategy: $("#StrategySelector").val().trim(),
+                  marketTrend: $("#MarketTrendSelector").val().trim(),
+                  timeFrame: $("#TimeFrameSelector").val().trim(),
                   startingDate: $("#inputStartingDate").val().trim(),
                   durationWD  : $("#inputDuration").val().trim()
 
