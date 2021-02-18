@@ -172,7 +172,7 @@ $(document).ready(function () {
                       
                         $.post("/watchlist/add", watchlist)
                         displayMessage("success", "Registered successfully");
-                        setTimeout(function () { location.reload(); }, reloadPage);
+                        setTimeout(function () { location.reload(); }, 2000);
 
                   };
 
