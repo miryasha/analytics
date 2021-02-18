@@ -296,12 +296,12 @@ router
    
                      const durationDays = duration.split(",")[j];
                      
-                     const market = splitTicker === 1 ? callStock(id,durationDays) : callForex(id,ticker,durationDays);
+                     //const market = splitTicker === 1 ? callStock(id,durationDays) : callForex(id,ticker,durationDays);
                      if (j + 1 === lenghtOfDays)
                      {
                        setTimeout(()=>{
-                         db.WatchList.deleteFromPassng(id)
-                         .catch(err =>  console.log("Error: Could`n delete from watchlist"+err));
+                         //db.WatchList.deleteFromPassng(id)
+                         //.catch(err =>  console.log("Error: Could`n delete from watchlist"+err));
                          
                         },5000);//end of settimeout in order to delete the watchlist
                        
