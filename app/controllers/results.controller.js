@@ -146,9 +146,7 @@ const  callForex = (id,ticker, durationDays) =>{
                       db.Results.insertPassingresults({symbol, dateTD, open, high, low, close, market, strategy, marketTrend, timeFrame, startingDate, durationWD})
                      .then(results(durationWD))
                      .catch(err => {console.log(err);});
-                      
-                    
-                            
+                          
                     };//end of resultMaker func
          
                            
@@ -289,15 +287,32 @@ router
                };
 
            const doSomething = async () => {
-                for (let j = 0; j < lenghtOfDays; j++) {
+                 
+                 
+                 
+                  for ( let j = 0 ; j < lenghtOfDays; j++) {
 
-                 await sleep(5000)
+                    await sleep(5000)
+   
+                     const durationDays = duration.split(",")[j];
+                     
+                     const market = splitTicker === 1 ? callStock(id,durationDays) : callForex(id,ticker,durationDays);
+                     if (j + 1 === lenghtOfDays)
+                     {
+                       setTimeout(()=>{
+                         db.WatchList.deleteFromPassng(id)
+                         .catch(err =>  console.log("Error: Could`n delete from watchlist"+err));
+                         
+                        },5000);//end of settimeout in order to delete the watchlist
+                       
+                      } ;//end of if statement
+                     
+                     
+                  };//end of for loop
 
-                  const durationDays = duration.split(",")[j];
-                  //console.log(durationDays,id,ticker)
-                  const market = splitTicker === 1 ? callStock(id,durationDays) : callForex(id,ticker,durationDays);
 
-               };//end of for loop
+                 
+                 
 
             };//end of do somthing
 

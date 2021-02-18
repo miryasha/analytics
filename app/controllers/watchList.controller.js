@@ -92,7 +92,7 @@ router
   db.WatchList.deleteFromPassng(id)
   .catch(err =>  console.log("Error: Query get"+err));
    res.status(500).end();
-  // });
+  
 });
 
 
