@@ -169,10 +169,10 @@ $(document).ready(function () {
             checkFields(watchlist).then((check) => {
                   if (check === false) { displayMessage("Error", "Field cannot be blank") }
                   else {
-
+                      
                         $.post("/watchlist/add", watchlist)
                         displayMessage("success", "Registered successfully");
-                        setTimeout(function () { location.reload(); }, 2000);
+                        setTimeout(function () { location.reload(); }, reloadPage);
 
                   };
 
@@ -213,9 +213,11 @@ $(document).ready(function () {
                                           duration: event.target.parentElement.parentElement.querySelector("#listDurationWD").innerText
                                         };                                    
                                         
-                        $.post("/results/add", rowData)
-                        displayMessage("success", "Watchlist has sent to Results");
-                        setTimeout(function () { location.reload(); }, 2000);
+                       $.post("/results/add", rowData)
+                       const delay = parseInt(rowData.duration.split(",").length) ;
+                       const reloadPage = (delay + 1) * 5000
+                       displayMessage("success", "Watchlist has sent to Results");
+                       setTimeout(function () { location.reload(); }, reloadPage);
                   }
 
 
