@@ -146,7 +146,7 @@ $(document).ready(function () {
             };
                  
 
-            const checkFields = async () => {
+            const checkFields = async (watchlist) => {
                   if (watchlist.tickerMarket === "") {
                         return false;
                   }  else if (watchlist.strategy === "") {
