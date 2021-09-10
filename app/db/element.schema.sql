@@ -30,7 +30,7 @@ CREATE TABLE Ticker_name
 (
 	`ID` int NOT NULL AUTO_INCREMENT,
 	`Ticker_name` varchar(20) NOT NULL,
-      `Ticker_Description` varchar(255) NOT NULL,
-      `Ticker_market` varchar(20) NOT NULL,
+    `Ticker_Description` varchar(255) NOT NULL,
+    `Ticker_market` varchar(20) NOT NULL,
        PRIMARY KEY (`ID`)
 );
